@@ -8,18 +8,17 @@ export const Modal = ({ largeImageURL, tags, closeModal }) => {
     }
   };
 
-  const handleKeyDown = event => {
-    if (event.code === 'Escape') {
-      closeModal('');
-    }
-  };
-
   useEffect(() => {
+    const handleKeyDown = event => {
+      if (event.code === 'Escape') {
+        closeModal('');
+      }
+    };
     document.addEventListener('keydown', handleKeyDown);
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
     };
-  });
+  }, [closeModal]);
 
   return (
     <div className={s.overlay} onClick={handleClickBackdrop}>
